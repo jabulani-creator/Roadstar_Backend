@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "roadstar-backend"
+version = "0.1.0"
+description = "Roadstar Driving School Zambia API (Django + DRF)"
+authors = ["Roadstar Digital <dev@roadstar.local>"]
+package-mode = false
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = ">=5.1,<5.2"
+djangorestframework = ">=3.15,<4"
+djangorestframework-simplejwt = ">=5.3,<6"
+django-cors-headers = ">=4.4,<5"
+django-environ = "^0.14.0"
+drf-spectacular = ">=0.27,<1"
+pillow = ">=10.0,<12"
+gunicorn = ">=23.0,<24"
+psycopg = {extras = ["binary"], version = ">=3.1,<4"}
+
+[tool.poetry.group.dev.dependencies]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
