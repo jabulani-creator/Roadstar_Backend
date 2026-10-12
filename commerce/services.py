@@ -258,9 +258,9 @@ def mark_payment_succeeded(
 
     Safe to call twice (webhook retries, double-click): second call returns same result.
     """
-    payment = Payment.objects.select_for_update().select_related("student", "course").get(
-        pk=payment_id
-    )
+    # Postgres rejects FOR UPDATE on the nullable side of an outer join
+    # (Payment.course is null=True), so lock Payment only — no select_related here.
+    payment = Payment.objects.select_for_update().get(pk=payment_id)
 
     if payment.status == PaymentStatus.SUCCEEDED:
         # Ensure receipt/grant exist (repair path) without double-granting.
